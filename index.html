@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My first Vue app</title>
+  <link rel="stylesheet" href="node_modules\bulma\css\bulma.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+</head>
+<body class="is-family-sans-serif has-background-danger-light">
+
+<div class="columns is-centered">
+
+  
+  <div class="column ">
+
+        <div id="app">
+          <section class="hero is-info">
+            <div class="hero-body">
+              <div class="container">
+                <h1 class="title has-text-centered">
+                  {{ message }}
+                </h1>
+                <h2 class="subtitle has-text-centered">
+                  {{subtitle}}
+                </h2>
+              </div>
+            </div>
+          </section>
+          
+          <section class="hero is-warning">
+            <div class="hero-body">
+              <div class="container">
+                <h1 class="title has-text-centered" v-model="newDay">
+                  {{ newDay }}
+                </h1>
+              </div>
+            </div>
+          </section>
+
+          <section class="hero is-light is-half">
+            <div class="hero-body">
+              <div class="container">
+                <form class="add-new" @submit.prevent="add">
+                  <div class="field">
+                    <div class="control">
+                      <label class="label">Text:</label>
+                      <input type="text"  class="input is-info" v-model="newDay">
+                      <ul class="pure-menu-list">
+                        <li class="{ strong: day.split(' ').length > 1 }"                           
+                          v-for="day in days">
+                          pure-menu-item has-text-danger
+                          <strong>{{day}}  </strong>     
+                          <small v-if="day.substring(0,1).toLowerCase()=='s'" >
+                            <em>
+                              Volnooooo
+                            </em>
+                          </small>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </form>
+                </h2>
+              </div>
+            </div>
+          </section>
+          
+          <section class="hero is-light has-text-centered">
+            <div class="hero-body">
+              <div class="container">
+                
+              </div>
+            </div>
+          </section>
+        
+
+          
+        </div>
+  </div>
+
+
+
+</div>
+
+
+
+    
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+        const app = new Vue({
+        el: '#app',
+        data: {
+            days: [
+                'monday', 'tuesday', 'wednesday','thursday'
+            ],
+            message: 'Hello Vue!',
+            header:'This is header',
+            newDay: '',
+            subtitle: "Today is nice day",
+        },
+        methods: {
+          add() {
+            this.days.push(
+              this.newDay
+            )
+          }
+        }
+        })
+    </script>
+</body>
+</html>
